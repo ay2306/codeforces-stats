@@ -1,11 +1,15 @@
+import sys
 from bs4 import BeautifulSoup
 import urllib2
 print "Loading, Please wait..."
 url = "http://codeforces.com/submissions/"
-handle = "ay2306"
+handle = sys.argv[1]
+print handle
 page = urllib2.urlopen(url+handle)
+if page.url != url+handle:
+    print "Invalid Username"
+    sys.exit(0)
 soup = BeautifulSoup(page,'lxml')
-# print soup.prettify()
 page_no = soup.find_all('span',class_='page-index')
 max_page_no = 0
 for i in page_no:
@@ -61,3 +65,4 @@ fopen.write(str(tle) + ',')
 fopen.write(str(mle) + ',')
 fopen.write(str(ot))
 fopen.close()
+sys.exit(1)
