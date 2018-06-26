@@ -12,7 +12,7 @@ then
 else
     python code1.py $1
     ret=$?
-    if $ret == 1
+    if [ $ret -eq 1 ]
     then
         # echo "HELLO"
         octave make_pie.m
